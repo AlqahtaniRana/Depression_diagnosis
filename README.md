@@ -12,6 +12,7 @@ The motivation for this project is to leverage machine learning techniques to as
 - `model.pkl`: The trained machine learning model serialized using joblib.
 - `README.md`: Project documentation.
 - `Early Diagnosis of Depression.pdf`: Contains the Capstone Project documentation.
+- `Early Diagnosis of Depression Using Machine Learning.ipynb`: Jupyter Notebook with detailed analysis and code.
 
 
 ## Dependencies
