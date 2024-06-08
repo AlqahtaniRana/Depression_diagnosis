@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depression Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        label {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+        input[type="text"], .radio-group {
+            padding: 8px;
+            width: calc(100% - 16px);
+            margin-bottom: 10px;
+        }
+        .radio-group {
+            display: flex;
+            align-items: center;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Depression Prediction</h1>
+        <form action="/predict" method="post">
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age">
+
+            <label for="hhsize">Household Size:</label>
+            <input type="text" id="hhsize" name="hhsize">
+
+            <label for="edu">Education Level:</label>
+            <input type="text" id="edu" name="edu">
+
+            <label for="asset_livestock">Value of livestock (USD):</label>
+            <input type="text" id="asset_livestock" name="asset_livestock">
+
+            <label for="asset_durable">Value of durable goods (USD):</label>
+            <input type="text" id="asset_durable" name="asset_durable">
+
+            <label for="asset_savings">Value of savings (USD):</label>
+            <input type="text" id="asset_savings" name="asset_savings">
+
+            <label for="asset_land_owned_total">Land owned (acres):</label>
+            <input type="text" id="asset_land_owned_total" name="asset_land_owned_total">
+
+            <label for="cons_alcohol">Alcohol (USD):</label>
+            <input type="text" id="cons_alcohol" name="cons_alcohol">
+
+            <label for="cons_tobacco">Tobacco (USD):</label>
+            <input type="text" id="cons_tobacco" name="cons_tobacco">
+
+            <label for="cons_social">Social expenditure (USD):</label>
+            <input type="text" id="cons_social" name="cons_social">
+
+            <label for="ent_nonag_flowcost">Non-ag business flow expenses, monthly (USD):</label>
+            <input type="text" id="ent_nonag_flowcost" name="ent_nonag_flowcost">
+
+            <label for="ent_animalstockrev">Livestock sales and meat revenue, monthly (USD):</label>
+            <input type="text" id="ent_animalstockrev" name="ent_animalstockrev">
+
+            <label for="ent_total_cost">Total expenses, monthly (USD):</label>
+            <input type="text" id="ent_total_cost" name="ent_total_cost">
+
+            <label for="fs_adwholed_often">Whole days without food (adults, # last month):</label>
+            <input type="text" id="fs_adwholed_often" name="fs_adwholed_often">
+
+            <label for="nondurable_investment">Non-durable Investments:</label>
+            <input type="text" id="nondurable_investment" name="nondurable_investment">
+
+            <label for="amount_given_mpesa">Amount sent using M-Pesa:</label>
+            <input type="text" id="amount_given_mpesa" name="amount_given_mpesa">
+
+            <label for="amount_received_mpesa">Amount received using M-Pesa:</label>
+            <input type="text" id="amount_received_mpesa" name="amount_received_mpesa">
+
+            <label for="net_mpesa">Net Remittances using M-Pesa:</label>
+            <input type="text" id="net_mpesa" name="net_mpesa">
+
+            <label for="married">Marital status (respondent):</label>
+            <div class="radio-group">
+                <input type="radio" id="married_yes" name="married" value="1">
+                <label for="married_yes">Yes</label>
+                <input type="radio" id="married_no" name="married" value="0">
+                <label for="married_no">No</label>
+            </div>
+
+            <label for="children">Number of children:</label>
+            <input type="text" id="children" name="children">
+
+            <label for="hh_children">Number of children <=18 or younger in Household:</label>
+            <input type="text" id="hh_children" name="hh_children">
+
+            <label for="ent_nonagbusiness">Non-agricultural business owner (dummy):</label>
+            <div class="radio-group">
+                <input type="radio" id="ent_nonagbusiness_yes" name="ent_nonagbusiness" value="1">
+                <label for="ent_nonagbusiness_yes">Yes</label>
+                <input type="radio" id="ent_nonagbusiness_no" name="ent_nonagbusiness" value="0">
+                <label for="ent_nonagbusiness_no">No</label>
+            </div>
+
+            <label for="ent_employees">Number of employees working in non-ag business:</label>
+            <input type="text" id="ent_employees" name="ent_employees">
+
+            <label for="early_survey">Psychology survey in 1st wave (dummy):</label>
+            <div class="radio-group">
+                <input type="radio" id="early_survey_yes" name="early_survey" value="1">
+                <label for="early_survey_yes">Yes</label>
+                <input type="radio" id="early_survey_no" name="early_survey" value="0">
+                <label for="early_survey_no">No</label>
+            </div>
+
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if prediction_text %}
+        <div class="result">
+            <h2 style="color: #2890ab;">{{ prediction_text }}</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
